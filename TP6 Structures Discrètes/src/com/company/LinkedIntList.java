@@ -5,11 +5,15 @@ import java.util.ArrayList;
 public class LinkedIntList implements IntList{
 
 
-    // variable d'instance
+    /**
+     * Premier maillon d'une liste
+     */
     private Cell first;
 
 
-    // Taille de la liste
+    /**
+     * Taille d'une liste
+     */
     int size ;
 
     /**
