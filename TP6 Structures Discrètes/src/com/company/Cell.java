@@ -15,14 +15,20 @@ public class Cell {
     private Cell nextCell;
 
     /**
-     * Constructeur de la class Cell
-     * @param data
+     * Constructeur de la class Cell     * @param data
      * @param nextCell
      */
     public Cell(int data, Cell nextCell){
         this.data = data;
         this.nextCell=nextCell;
     }
+
+    public Cell(int data){
+        this.data =data;
+        this.nextCell = null;
+    }
+
+
 
     /**
      * accesseurs de l'attriubut data
@@ -50,9 +56,23 @@ public class Cell {
 
     /**
      * mutateur de l'attribut nextCell
-     * @param nextCell
+     * @param n
      */
-    public void setNextCell(Cell nextCell) {
-        this.nextCell = nextCell;
+    public void setNextCell(int n) {
+        this.nextCell = new Cell(n,null);
     }
+
+
+    /**
+     * La méthode addCell(int n) permet de relier deux maillons successivement;
+     * @param n
+     */
+    public void addCell(int n){
+        if (this.getNextCell() == null){
+            this.setNextCell(n);
+        }else {
+            this.getNextCell().addCell(n);
+        }
+    }
+
 }

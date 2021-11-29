@@ -2,7 +2,7 @@ package com.company;
 /**
  * interface IntList
  * */
-import java.util.NoSuchElementException;
+
 public interface IntList {
     /** @return la tête (le premier élément) de la liste si elle est non-vide
      * */
