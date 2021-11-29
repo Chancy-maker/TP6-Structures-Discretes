@@ -3,14 +3,14 @@ package com.company;
 import java.util.ArrayList;
 
 public class LinkedIntList implements IntList{
+
+
     // variable d'instance
     private Cell first;
 
-    // Listes des entier d'une Linkedlist
-    ArrayList<Integer> list = new ArrayList<>();
 
     // Taille de la liste
-    int size = 0;
+    int size ;
 
     /**
      * Constructeur d'objets de la classe LinkedIntList
@@ -19,6 +19,16 @@ public class LinkedIntList implements IntList{
     public LinkedIntList(){
         //initialisation des variable d'instance
         first = null;
+        this.size = 0;
+
+    }
+
+    /**
+     * Accesseur de l'attribut first
+     * @return
+     */
+    public Cell getFirst() {
+        return first;
     }
 
     @Override
@@ -30,24 +40,26 @@ public class LinkedIntList implements IntList{
 
     @Override
     public IntList getTail() {
-        IntList intList = new LinkedIntList();
+        IntList intList1 = new LinkedIntList();
         ArrayList<Integer> list1 = new ArrayList<>();
-        for (Integer integer :  list){
-            list1.add(integer);
-        }
-        list1.remove(0);
-        if (this.size>0){
-            for (Integer ints : list1){
-                intList.cons(ints);
+        if (!this.isEmpty()) {
+            for (Integer integer : this.first.getList()) {
+                list1.add(integer);
             }
+            list1.remove(0);
+            if (this.size > 0) {
+                for (Integer ints : list1) {
+                    intList1.cons(ints);
+                }
+            }
+            return intList1;
         }
-        return intList;
+        return new LinkedIntList();
     }
 
     @Override
     public boolean isEmpty() {
-
-        if (this.first == null){
+        if (size<=0){
             return true;
         }
         return false;
@@ -57,6 +69,7 @@ public class LinkedIntList implements IntList{
     public IntList cons(int n) {
         if (this.first == null){
             this.first = new Cell(n);
+
             size += 1;
         }else {
             size +=1;
@@ -75,25 +88,6 @@ public class LinkedIntList implements IntList{
         return size;
     }
 
-    /**
-     * La méthode getDataOfLinkedintList(Celle cell) permet de récupérer la liste des entier d'une liste
-     * @param cell
-     * @return
-     */
-       public ArrayList<Integer> getDataOfLinkedintList(Cell cell){
-        list.add(cell.getData());
-
-
-        if (cell.getNextCell()==null){
-            return list;
-        }
-
-
-        getDataOfLinkedintList(cell.getNextCell());
-
-
-        return list;
-    }
 
     @Override
     public String toString(){
@@ -102,15 +96,12 @@ public class LinkedIntList implements IntList{
             result += "]";
             return result;
         }
-        ArrayList<Integer> dataOfLinkedintList = getDataOfLinkedintList(this.first);
+        ArrayList<Integer> dataOfLinkedintList = this.first.getList();
         for (Integer ints : dataOfLinkedintList){
             result += ints + ",";
         }
         result += "]";
         return result;
     }
-
-
-
 
 }
