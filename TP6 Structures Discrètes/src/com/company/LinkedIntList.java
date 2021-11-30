@@ -92,6 +92,10 @@ public class LinkedIntList implements IntList{
         return size;
     }
 
+    public IntListIterator iterator(){
+        return new IntListIterator(this.first);
+    }
+
 
     @Override
     public String toString(){

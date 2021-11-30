@@ -16,8 +16,10 @@ public class Main {
         list.cons(43987665);
         list.cons(4398766);
         list.cons(4387655);
-        System.out.println(list);
-        System.out.println(sum(list));
+        IntIterator intIterator = list.iterator();
+        while (intIterator.hasNext()){
+            System.out.println(intIterator.next());
+        }
 
 
 
