@@ -12,10 +12,18 @@ public class LinkedIntList implements IntList {
     private Cell first;
 
 
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     /**
      * Taille d'une liste
      */
-    int size;
+    private int size;
 
     /**
      * Constructeur d'objets de la classe LinkedIntList
@@ -50,9 +58,10 @@ public class LinkedIntList implements IntList {
 
 
     @Override
-    public IntList getTail() {
+    public LinkedIntList getTail() {
         LinkedIntList listReturn = new LinkedIntList();
         listReturn.setFirst(this.first.getNextCell());
+        listReturn.size = this.size - 1 ;
         return listReturn;
     }
 
@@ -64,14 +73,17 @@ public class LinkedIntList implements IntList {
         return false;
     }
 
+
     @Override
-    public IntList cons(int n) {
-        Cell element = new Cell(n, null);
-        Cell firstElementOfList = this.first;
-        this.setFirst(element);
-        this.first.setNextCell(firstElementOfList);
-        size++;
-        return this;
+    public LinkedIntList cons(int n) {
+        LinkedIntList listReturn = new LinkedIntList();
+        listReturn.setFirst(new Cell(n, null));
+        listReturn.getFirst().setNextCell(this.first);
+        listReturn.size = this.size + 1;
+        this.size += listReturn.size;
+
+
+        return listReturn;
     }
 
     @Override
@@ -96,6 +108,7 @@ public class LinkedIntList implements IntList {
      */
     public void remove() {
         this.setFirst(this.first.getNextCell());
+        size --;
     }
 
     /**
@@ -109,6 +122,7 @@ public class LinkedIntList implements IntList {
         Cell firstElementOfList = this.first;
         this.setFirst(element);
         this.first.setNextCell(firstElementOfList);
+        size++;
     }
 
     /**
@@ -120,8 +134,9 @@ public class LinkedIntList implements IntList {
     public void add(int n, int pos) {
         if (pos < 1) {
             this.add(n);
+            size++;
         }
-        if (pos >= 1 && !(pos > this.size - 1)) {
+        if (pos >= 1 && !(pos > this.size)) {
             int position = 0;
             Cell currentPosition = this.first;
             Cell nextPosition = null;
@@ -157,8 +172,8 @@ public class LinkedIntList implements IntList {
             throw new NoSuchElementException("Entrer une valeur supérieur ou égal à 1 et inférieur " +
                     "à la taille de la liste");
         } else {
-            if (pos >= 1 && !(pos > this.size - 1)) {
-                int position = 0;
+            if (pos >= 1 && !(pos > this.size)) {
+                int position = 1;
                 Cell currentPosition = this.first;
                 Cell nextPosition = null;
                 while (currentPosition.getNextCell() != null) {
