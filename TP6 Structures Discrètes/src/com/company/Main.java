@@ -1,6 +1,6 @@
 package com.company;
 
-import static com.company.TryList.sum;
+import static com.company.TryList.*;
 
 public class Main {
 
@@ -11,15 +11,13 @@ public class Main {
         list.cons(36);
         list.cons(45);
         list.cons(55);
-        list.cons(43765);
-        list.cons(4387655);
-        list.cons(43987665);
-        list.cons(4398766);
-        list.cons(4387655);
-        IntIterator intIterator = list.iterator();
-        while (intIterator.hasNext()){
-            System.out.println(intIterator.next());
-        }
+
+        printIntList(list);
+        list.add(3,5);
+        printIntList(list);
+        System.out.println(list.size);
+
+
 
 
 

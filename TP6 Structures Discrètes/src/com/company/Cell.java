@@ -8,10 +8,7 @@ import java.util.ArrayList;
 public class Cell {
 
 
-    /**
-     * Liste d'une élément d'une chaine de maillons
-     */
-    private ArrayList<Integer> list = new ArrayList<>();
+
     /**
      * La donnée du maillon
      */
@@ -30,20 +27,7 @@ public class Cell {
     public Cell(int data, Cell nextCell){
         this.data = data;
         this.nextCell=nextCell;
-        list.add(data);
     }
-
-    /**
-     * Second constructeur de la classe Cell
-     * @param data
-     */
-    public Cell(int data){
-        this.data =data;
-        this.nextCell = null;
-        list.add(data);
-    }
-
-
 
     /**
      * accesseurs de l'attriubut data
@@ -70,43 +54,17 @@ public class Cell {
     }
 
     /**
-     * mutateur de l'attribut nextCell
-     * @param n
+     * second mutateur de l'attribut nextCell
+     * @param cell
      */
-    public void setNextCell(int n) {
-        this.nextCell = new Cell(n,null);
-    }
 
-    /**
-     * Accesseur de l'attribut list
-     * @return
-     */
-    public ArrayList<Integer> getList() {
-        return list;
-    }
-
-    /**
-     * Mutateur de l'attribut list
-     * @param list
-     */
-    public void setList1(ArrayList<Integer> list) {
-        this.list = list;
+    public void setNextCell(Cell cell){
+        this.nextCell = cell;
     }
 
 
-    /**
-     * La méthode addCell(int n) permet de relier deux maillons successivement;
-     * @param n
-     */
-    public void addCell(int n){
-        if (this.getNextCell() == null){
-            list.add(n);
-            this.setNextCell(n);
-        }else {
-            this.list.add(n);
-            this.getNextCell().addCell(n);
 
-        }
-    }
+
+
 
 }
