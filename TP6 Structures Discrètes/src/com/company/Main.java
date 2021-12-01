@@ -15,7 +15,9 @@ public class Main {
         printIntList(list);
         list.add(3,5);
         printIntList(list);
-        System.out.println(list.size);
+        System.out.println("La taille de la liste est : " + list.size);
+        list.remove(2);
+        printIntList(list);
 
 
 
